@@ -32,7 +32,7 @@ const BaseballGame = {
     if (strike > 0) {
       result += `${strike}${GAME_MESSAGE.strike}`;
     }
-    return result;
+    return result.trim();
   },
 };
 
