@@ -1,9 +1,11 @@
+const { getStrike } = require('./controllers/BaseballGame');
 const { RandomNumber } = require('./models/RandomNumber');
 const InputView = require('./views/InputView');
 const OutputView = require('./views/OupputView');
 
 class App {
   #getResult;
+
   #computer;
 
   constructor() {
@@ -18,7 +20,10 @@ class App {
   }
 
   getResult(numbers) {
-    console.log(numbers);
+    const player = numbers.split('').map(number => Number(number));
+    console.log(player);
+    const strikeNumber = getStrike(this.#computer, player);
+    console.log(strikeNumber);
   }
 }
 
