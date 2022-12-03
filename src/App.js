@@ -1,3 +1,4 @@
+const { Console } = require('@woowacourse/mission-utils');
 const {
   getStrikeCount,
   getBallCount,
@@ -41,7 +42,11 @@ class App {
   getRestart(number) {
     const player = Number(number);
     if (player === GAME_NUMBER.restart) {
+      this.#computer = RandomNumber();
       InputView.readPlayerNumber(this.#getResult);
+    }
+    if (player === GAME_NUMBER.quit) {
+      Console.close();
     }
   }
 }
