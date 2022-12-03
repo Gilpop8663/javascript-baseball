@@ -28,7 +28,6 @@ class App {
   }
 
   getPlayerNumber(numbers) {
-    console.log(this.#computer);
     const player = numbers.split('').map(number => Number(number));
     Validation.gamePlayValidation(player);
     this.getResult(player);
@@ -65,8 +64,5 @@ class App {
     Console.close();
   }
 }
-
-const app = new App();
-app.play();
 
 module.exports = App;
