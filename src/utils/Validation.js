@@ -12,8 +12,8 @@ const Validation = {
     Validation.isOverlap(player);
   },
   isLength(numbers) {
-    if (numbers.length > GAME_NUMBER.all) {
-      throw new Error(GAME_PLAY_ERROR.tooMany);
+    if (numbers.length !== GAME_NUMBER.all) {
+      throw new Error(GAME_PLAY_ERROR.threeInput);
     }
   },
   isZeroInclude(numbers) {
