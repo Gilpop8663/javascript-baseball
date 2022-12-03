@@ -6,7 +6,7 @@ const GAME_NUMBER = Object.freeze({
 
 const GAME_MESSAGE = Object.freeze({
   ball: '볼',
-  finish: `${GAME_NUMBER.all}개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 ${GAME_NUMBER.restart}, 종료하려면 ${GAME_NUMBER.quit}를 입력하세요.`,
+  finish: `${GAME_NUMBER.all}개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 ${GAME_NUMBER.restart}, 종료하려면 ${GAME_NUMBER.quit}를 입력하세요.\n`,
   empty: '낫싱',
   input: '숫자를 입력해주세요 : ',
   start: '숫자 야구 게임을 시작합니다.',

@@ -5,6 +5,9 @@ const InputView = {
   readPlayerNumber(callback) {
     Console.readLine(GAME_MESSAGE.input, callback);
   },
+  readGameRestart(callback) {
+    Console.readLine(GAME_MESSAGE.finish, callback);
+  },
 };
 
 module.exports = InputView;

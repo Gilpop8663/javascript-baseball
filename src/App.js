@@ -29,6 +29,9 @@ class App {
     const ballNumber = getBallCount(this.#computer, player);
     const resultString = getResultString(strikeNumber, ballNumber);
     OutputView.printGameResult(resultString);
+    if (strikeNumber === 3) {
+      InputView.readGameRestart(this.#getResult);
+    }
   }
 }
 
