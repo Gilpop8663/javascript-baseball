@@ -1,6 +1,11 @@
 const { GAME_MESSAGE } = require('../utils/Constant');
 
 const BaseballGame = {
+  getStrikeAndBallCount(computer, player) {
+    const strike = BaseballGame.getStrikeCount(computer, player);
+    const ball = BaseballGame.getBallCount(computer, player);
+    return { strike, ball };
+  },
   getStrikeCount(computer, player) {
     const count = computer.filter((number, idx) => {
       return number === player[idx];

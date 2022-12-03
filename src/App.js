@@ -3,6 +3,7 @@ const {
   getStrikeCount,
   getBallCount,
   getResultString,
+  getStrikeAndBallCount,
 } = require('./controllers/BaseballGame');
 const { RandomNumber } = require('./models/RandomNumber');
 const { GAME_NUMBER } = require('./utils/Constant');
@@ -30,13 +31,13 @@ class App {
 
   getResult(numbers) {
     const player = numbers.split('').map(number => Number(number));
-    const strikeNumber = getStrikeCount(this.#computer, player);
-    const ballNumber = getBallCount(this.#computer, player);
-    const resultString = getResultString(strikeNumber, ballNumber);
+    const { strike, ball } = getStrikeAndBallCount(this.#computer, player);
+    const resultString = getResultString(strike, ball);
     OutputView.printGameResult(resultString);
-    if (strikeNumber === 3) {
+    if (strike === 3) {
       InputView.readGameRestart(this.#getRestart);
     }
+    InputView.readPlayerNumber(this.#getResult);
   }
 
   getRestart(number) {
@@ -46,8 +47,12 @@ class App {
       InputView.readPlayerNumber(this.#getResult);
     }
     if (player === GAME_NUMBER.quit) {
-      Console.close();
+      App.getGameQuit();
     }
+  }
+
+  static getGameQuit() {
+    Console.close();
   }
 }
 
