@@ -6,7 +6,7 @@ const InputView = {
     Console.readLine(GAME_MESSAGE.input, callback);
   },
   readGameRestart(callback) {
-    Console.readLine(GAME_MESSAGE.finish, callback);
+    Console.readLine(GAME_MESSAGE.restart, callback);
   },
 };
 

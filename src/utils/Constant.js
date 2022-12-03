@@ -9,7 +9,8 @@ const GAME_NUMBER = Object.freeze({
 
 const GAME_MESSAGE = Object.freeze({
   ball: '볼',
-  finish: `${GAME_NUMBER.all}개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 ${GAME_NUMBER.restart}, 종료하려면 ${GAME_NUMBER.quit}를 입력하세요.\n`,
+  finish: `${GAME_NUMBER.all}개의 숫자를 모두 맞히셨습니다! 게임 종료`,
+  restart: `게임을 새로 시작하려면 ${GAME_NUMBER.restart}, 종료하려면 ${GAME_NUMBER.quit}를 입력하세요.\n`,
   empty: '낫싱',
   input: '숫자를 입력해주세요 : ',
   start: '숫자 야구 게임을 시작합니다.',
@@ -23,7 +24,7 @@ const GAME_RESTART_RULE = `게임 재시작을 원하시면 ${GAME_NUMBER.restar
 const GAME_PLAY_ERROR = Object.freeze({
   includeZero: `숫자에 0이 포함되어 있습니다. ${GAME_PLAY_RULE}`,
   overlap: `중복되는 숫자가 있습니다. ${GAME_PLAY_RULE}`,
-  tooMany: `너무 많은 숫자가 입력되었습니다. ${GAME_PLAY_RULE}`,
+  threeInput: `숫자는 3개만 입력해야 합니다. ${GAME_PLAY_RULE}`,
   notNumber: `숫자가 아닌 다른 문자열이 포함되어 있습니다. ${GAME_PLAY_RULE}`,
 });
 

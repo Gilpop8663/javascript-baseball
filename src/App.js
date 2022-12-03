@@ -3,12 +3,11 @@ const {
   getResultString,
   getStrikeAndBallCount,
 } = require('./controllers/BaseballGame');
-const { RandomNumber } = require('./models/RandomNumber');
 const { GAME_NUMBER } = require('./utils/Constant');
-const Validation = require('./utils/Validation');
-const { gamePlayValidation } = require('./utils/Validation');
+const { RandomNumber } = require('./models/RandomNumber');
 const InputView = require('./views/InputView');
 const OutputView = require('./views/OupputView');
+const Validation = require('./utils/Validation');
 
 class App {
   #computer;
@@ -24,14 +23,14 @@ class App {
   }
 
   play() {
-    console.log(this.#computer);
     OutputView.printGameStart();
     InputView.readPlayerNumber(this.#getPlayerNumber);
   }
 
   getPlayerNumber(numbers) {
+    console.log(this.#computer);
     const player = numbers.split('').map(number => Number(number));
-    gamePlayValidation(player);
+    Validation.gamePlayValidation(player);
     this.getResult(player);
   }
 
@@ -39,7 +38,8 @@ class App {
     const { strike, ball } = getStrikeAndBallCount(this.#computer, player);
     const resultString = getResultString(strike, ball);
     OutputView.printGameResult(resultString);
-    if (strike === 3) {
+    if (strike === GAME_NUMBER.all) {
+      OutputView.printGameFinish();
       InputView.readGameRestart(this.#getRestartNumber);
     }
     InputView.readPlayerNumber(this.#getPlayerNumber);
