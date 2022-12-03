@@ -17,14 +17,14 @@ const GAME_MESSAGE = Object.freeze({
   strike: '스트라이크',
 });
 
-const GAME_PLAY_RULE = `${GAME_NUMBER.pickStart}부터 ${GAME_NUMBER.pickEnd}까지 서로 다른 수를 3자리 입력해주세요.`;
+const GAME_PLAY_RULE = `${GAME_NUMBER.pickStart}부터 ${GAME_NUMBER.pickEnd}까지 서로 다른 수를 ${GAME_NUMBER.all}자리 입력해주세요.`;
 
 const GAME_RESTART_RULE = `게임 재시작을 원하시면 ${GAME_NUMBER.restart}, 게임 종료를 원하시면 ${GAME_NUMBER.quit}를 입력해주세요.`;
 
 const GAME_PLAY_ERROR = Object.freeze({
-  includeZero: `숫자에 0이 포함되어 있습니다. ${GAME_PLAY_RULE}`,
+  includeWrongNumber: `숫자에 ${GAME_NUMBER.zero}이 포함되어 있습니다. ${GAME_PLAY_RULE}`,
   overlap: `중복되는 숫자가 있습니다. ${GAME_PLAY_RULE}`,
-  threeInput: `숫자는 3개만 입력해야 합니다. ${GAME_PLAY_RULE}`,
+  correctInput: `숫자는 ${GAME_NUMBER.all}개만 입력해야 합니다. ${GAME_PLAY_RULE}`,
   notNumber: `숫자가 아닌 다른 문자열이 포함되어 있습니다. ${GAME_PLAY_RULE}`,
 });
 
