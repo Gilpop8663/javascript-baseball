@@ -28,7 +28,7 @@ class App {
     const strikeNumber = getStrikeCount(this.#computer, player);
     const ballNumber = getBallCount(this.#computer, player);
     const resultString = getResultString(strikeNumber, ballNumber);
-    console.log(resultString);
+    OutputView.printGameResult(resultString);
   }
 }
 
