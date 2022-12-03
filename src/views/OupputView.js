@@ -5,6 +5,9 @@ const OutputView = {
   printGameStart() {
     Console.print(GAME_MESSAGE.start);
   },
+  printGameResult(result) {
+    Console.print(result);
+  },
 };
 
 module.exports = OutputView;
