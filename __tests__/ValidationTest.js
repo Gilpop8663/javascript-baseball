@@ -1,4 +1,8 @@
-const { GAME_PLAY_ERROR, GAME_RESTART_RULE } = require('../src/utils/Constant');
+const {
+  GAME_PLAY_ERROR,
+  GAME_RESTART_RULE,
+  GAME_NUMBER,
+} = require('../src/utils/Constant');
 const {
   isLength,
   isZeroInclude,
@@ -16,7 +20,7 @@ describe('예외 처리 테스트', () => {
     [[]],
   ];
 
-  const zeroInput = [[[1, 2, 0]], [[3, 2, 0]], [[7, 8, 0]]];
+  const wrongNumberInput = [[[1, 2, 0]], [[3, 2, 0]], [[7, 8, 0]]];
 
   const overlapInput = [[[1, 2, 1]], [[3, 2, 3]], [[7, 8, 8]]];
 
@@ -24,13 +28,21 @@ describe('예외 처리 테스트', () => {
 
   const wrongRestartInput = [['a'], ['asd'], [12], [3], [0], [-1]];
 
-  test.each(lengthInput)('3이 아닌 %s 의 경우 예외 처리', number => {
-    expect(() => isLength(number)).toThrow(GAME_PLAY_ERROR.threeInput);
-  });
+  test.each(lengthInput)(
+    `${GAME_NUMBER.all}이 아닌 %s 의 경우 예외 처리`,
+    number => {
+      expect(() => isLength(number)).toThrow(GAME_PLAY_ERROR.correctInput);
+    },
+  );
 
-  test.each(zeroInput)('0이 포함된 %s 의 경우 예외 처리', number => {
-    expect(() => isZeroInclude(number)).toThrow(GAME_PLAY_ERROR.includeZero);
-  });
+  test.each(wrongNumberInput)(
+    '잘못된 숫자가 포함된 %s 의 경우 예외 처리',
+    number => {
+      expect(() => isZeroInclude(number)).toThrow(
+        GAME_PLAY_ERROR.includeWrongNumber,
+      );
+    },
+  );
 
   test.each(overlapInput)('중복된 숫자가 있는 %s 의 경우 예외 처리', number => {
     expect(() => isOverlap(number)).toThrow(GAME_PLAY_ERROR.overlap);
@@ -40,7 +52,10 @@ describe('예외 처리 테스트', () => {
     expect(() => isNotNumber(number)).toThrow(GAME_PLAY_ERROR.notNumber);
   });
 
-  test.each(wrongRestartInput)('1과 2가 아닌 %s 의 경우 예외 처리', number => {
-    expect(() => gameRestartValidation(number)).toThrow(GAME_RESTART_RULE);
-  });
+  test.each(wrongRestartInput)(
+    `${GAME_NUMBER.restart}과 ${GAME_NUMBER.quit}가 아닌 %s 의 경우 예외 처리`,
+    number => {
+      expect(() => gameRestartValidation(number)).toThrow(GAME_RESTART_RULE);
+    },
+  );
 });

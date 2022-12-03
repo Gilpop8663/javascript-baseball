@@ -13,12 +13,12 @@ const Validation = {
   },
   isLength(numbers) {
     if (numbers.length !== GAME_NUMBER.all) {
-      throw new Error(GAME_PLAY_ERROR.threeInput);
+      throw new Error(GAME_PLAY_ERROR.correctInput);
     }
   },
   isZeroInclude(numbers) {
     if (numbers.includes(GAME_NUMBER.zero)) {
-      throw new Error(GAME_PLAY_ERROR.includeZero);
+      throw new Error(GAME_PLAY_ERROR.includeWrongNumber);
     }
   },
   isOverlap(numbers) {
