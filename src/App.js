@@ -7,44 +7,50 @@ const {
 } = require('./controllers/BaseballGame');
 const { RandomNumber } = require('./models/RandomNumber');
 const { GAME_NUMBER } = require('./utils/Constant');
+const { gamePlayValidation } = require('./utils/Validation');
 const InputView = require('./views/InputView');
 const OutputView = require('./views/OupputView');
 
 class App {
   #computer;
 
-  #getResult;
+  #getPlayerNumber;
 
   #getRestart;
 
   constructor() {
     this.#computer = RandomNumber();
-    this.#getResult = this.getResult.bind(this);
+    this.#getPlayerNumber = this.getPlayerNumber.bind(this);
     this.#getRestart = this.getRestart.bind(this);
   }
 
   play() {
     console.log(this.#computer);
     OutputView.printGameStart();
-    InputView.readPlayerNumber(this.#getResult);
+    InputView.readPlayerNumber(this.#getPlayerNumber);
   }
 
-  getResult(numbers) {
+  getPlayerNumber(numbers) {
     const player = numbers.split('').map(number => Number(number));
+    gamePlayValidation(player);
+    this.getResult(player);
+  }
+
+  getResult(player) {
     const { strike, ball } = getStrikeAndBallCount(this.#computer, player);
     const resultString = getResultString(strike, ball);
     OutputView.printGameResult(resultString);
     if (strike === 3) {
       InputView.readGameRestart(this.#getRestart);
     }
-    InputView.readPlayerNumber(this.#getResult);
+    InputView.readPlayerNumber(this.#getPlayerNumber);
   }
 
   getRestart(number) {
     const player = Number(number);
     if (player === GAME_NUMBER.restart) {
       this.#computer = RandomNumber();
-      InputView.readPlayerNumber(this.#getResult);
+      InputView.readPlayerNumber(this.#getPlayerNumber);
     }
     if (player === GAME_NUMBER.quit) {
       App.getGameQuit();

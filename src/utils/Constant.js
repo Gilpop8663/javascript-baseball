@@ -4,6 +4,7 @@ const GAME_NUMBER = Object.freeze({
   all: 3,
   pickStart: 1,
   pickEnd: 9,
+  zero: 0,
 });
 
 const GAME_MESSAGE = Object.freeze({
@@ -21,8 +22,8 @@ const GAME_RESTART_RULE = `게임 재시작을 원하시면 ${GAME_NUMBER.restar
 
 const GAME_PLAY_ERROR = Object.freeze({
   includeZero: `숫자에 0이 포함되어 있습니다. ${GAME_PLAY_RULE}`,
-  notDifferent: `중복되는 숫자가 있습니다. ${GAME_PLAY_RULE}`,
-  range: `너무 많은 숫자가 입력되었습니다. ${GAME_PLAY_RULE}`,
+  overlap: `중복되는 숫자가 있습니다. ${GAME_PLAY_RULE}`,
+  tooMany: `너무 많은 숫자가 입력되었습니다. ${GAME_PLAY_RULE}`,
   notNumber: `숫자가 아닌 다른 문자열이 포함되어 있습니다. ${GAME_PLAY_RULE}`,
 });
 
