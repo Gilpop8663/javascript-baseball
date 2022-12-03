@@ -1,4 +1,8 @@
-const { GAME_PLAY_ERROR, GAME_NUMBER } = require('./Constant');
+const {
+  GAME_PLAY_ERROR,
+  GAME_NUMBER,
+  GAME_RESTART_RULE,
+} = require('./Constant');
 
 const Validation = {
   gamePlayValidation(player) {
@@ -29,6 +33,11 @@ const Validation = {
         throw new Error(GAME_PLAY_ERROR.notNumber);
       }
     });
+  },
+  gameRestartValidation(player) {
+    if (player !== 1 && player !== 2) {
+      throw new Error(GAME_RESTART_RULE);
+    }
   },
 };
 

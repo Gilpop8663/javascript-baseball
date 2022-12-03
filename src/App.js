@@ -1,12 +1,11 @@
 const { Console } = require('@woowacourse/mission-utils');
 const {
-  getStrikeCount,
-  getBallCount,
   getResultString,
   getStrikeAndBallCount,
 } = require('./controllers/BaseballGame');
 const { RandomNumber } = require('./models/RandomNumber');
 const { GAME_NUMBER } = require('./utils/Constant');
+const Validation = require('./utils/Validation');
 const { gamePlayValidation } = require('./utils/Validation');
 const InputView = require('./views/InputView');
 const OutputView = require('./views/OupputView');
@@ -16,12 +15,12 @@ class App {
 
   #getPlayerNumber;
 
-  #getRestart;
+  #getRestartNumber;
 
   constructor() {
     this.#computer = RandomNumber();
     this.#getPlayerNumber = this.getPlayerNumber.bind(this);
-    this.#getRestart = this.getRestart.bind(this);
+    this.#getRestartNumber = this.getRestartNumber.bind(this);
   }
 
   play() {
@@ -41,13 +40,18 @@ class App {
     const resultString = getResultString(strike, ball);
     OutputView.printGameResult(resultString);
     if (strike === 3) {
-      InputView.readGameRestart(this.#getRestart);
+      InputView.readGameRestart(this.#getRestartNumber);
     }
     InputView.readPlayerNumber(this.#getPlayerNumber);
   }
 
-  getRestart(number) {
+  getRestartNumber(number) {
     const player = Number(number);
+    Validation.gameRestartValidation(player);
+    this.getRestart(player);
+  }
+
+  getRestart(player) {
     if (player === GAME_NUMBER.restart) {
       this.#computer = RandomNumber();
       InputView.readPlayerNumber(this.#getPlayerNumber);
